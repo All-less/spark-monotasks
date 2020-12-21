@@ -226,6 +226,7 @@ def execute_query(aws_key_id, aws_key, args, query, branch, is_first_branch):
   print "Retrieving logs"
   parameters = [query, branch]
   log_dir = utils.copy_all_logs(parameters, utils.get_workers())
+  utils.copy_all_traces(log_dir, driver_addr, utils.get_workers())
   log_files = path.join(log_dir, "*")
 
   # Move the logs into a new directory: output_dir/query/branch/

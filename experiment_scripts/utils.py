@@ -107,6 +107,11 @@ def copy_all_logs(stringified_parameters, slaves):
   print "Finished copying results to {}".format(log_directory_name)
   return log_directory_name
 
+def copy_all_traces(log_dir, master, slaves):
+  for slave in slaves:
+    scp_from(slave, "/root/call_stack.trace", "{}/slave_{}.trace".format(log_dir, slave))
+  scp_from(master, "/root/call_stack.trace", "{}/master_{}.trace".format(log_dir, master))
+
 def copy_and_zip_all_logs(stringified_parameters, slaves):
   """ Packages up all of the logs from running an experiment.
 
